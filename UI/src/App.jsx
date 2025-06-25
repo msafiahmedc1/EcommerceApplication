@@ -1,7 +1,12 @@
 import "./App.css";
+import Routes from "./core/routes";
 
 function App() {
-  return <div>Ecommerce Application</div>;
+  return (
+    <div>
+      <Routes />
+    </div>
+  );
 }
 
 export default App;
