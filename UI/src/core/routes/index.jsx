@@ -1,67 +1,25 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "../../components/header";
 import Home from "../../components/home";
 import Shop from "../../components/shop";
 import AboutUs from "../../components/aboutUs";
 import Services from "../../components/services";
 import Blog from "../../components/blog";
 import ContactUs from "../../components/contactUs";
+import Layout from "../../layout";
 
 const Routes = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: (
-        <div>
-          <Header />
-          <Home />
-        </div>
-      ),
-    },
-    {
-      path: "/shop",
-      element: (
-        <div>
-          <Header />
-          <Shop />
-        </div>
-      ),
-    },
-    {
-      path: "/aboutus",
-      element: (
-        <div>
-          <Header />
-          <AboutUs />
-        </div>
-      ),
-    },
-    {
-      path: "/services",
-      element: (
-        <div>
-          <Header />
-          <Services />
-        </div>
-      ),
-    },
-    {
-      path: "/blog",
-      element: (
-        <div>
-          <Header />
-          <Blog />
-        </div>
-      ),
-    },
-    {
-      path: "/contactus",
-      element: (
-        <div>
-          <Header />
-          <ContactUs />
-        </div>
-      ),
+      element: <Layout />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: "shop", element: <Shop /> },
+        { path: "aboutus", element: <AboutUs /> },
+        { path: "services", element: <Services /> },
+        { path: "blog", element: <Blog /> },
+        { path: "contactus", element: <ContactUs /> },
+      ],
     },
   ]);
   return (
