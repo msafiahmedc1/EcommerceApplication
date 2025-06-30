@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { NAVLINKS } from "./constants";
 import BrandName from "../brandName";
-import User from "../user";
+import Search from "../search";
 import Cart from "../cart";
 
 const Navigation = () => {
@@ -32,7 +32,7 @@ const Navigation = () => {
         ))}
       </ul>
       <div className="flex space-x-15 text-white text-xl mr-[5%]">
-        <User />
+        <Search />
         <Cart />
       </div>
     </nav>

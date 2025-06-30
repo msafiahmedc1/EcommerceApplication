@@ -6,6 +6,8 @@ import Services from "../../components/services";
 import Blog from "../../components/blog";
 import ContactUs from "../../components/contactUs";
 import Layout from "../../layout";
+import AddToCart from "../../components/addToCart";
+import Checkout from "../../components/checkout";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -19,6 +21,8 @@ const Routes = () => {
         { path: "services", element: <Services /> },
         { path: "blog", element: <Blog /> },
         { path: "contactus", element: <ContactUs /> },
+        { path: "addtocart", element: <AddToCart /> },
+        { path: "checkout", element: <Checkout /> },
       ],
     },
   ]);
