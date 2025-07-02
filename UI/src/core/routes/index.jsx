@@ -8,6 +8,7 @@ import ContactUs from "../../components/contactUs";
 import Layout from "../../layout";
 import AddToCart from "../../components/addToCart";
 import Checkout from "../../components/checkout";
+import ProductDetails from "../../components/productDetails";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -23,6 +24,7 @@ const Routes = () => {
         { path: "contactus", element: <ContactUs /> },
         { path: "addtocart", element: <AddToCart /> },
         { path: "checkout", element: <Checkout /> },
+        { path: "/product/:id", element: <ProductDetails /> },
       ],
     },
   ]);

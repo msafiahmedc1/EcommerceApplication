@@ -1,5 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import { useCart } from "../../core/contexts/CartContext";
 import DefaultLayout from "../../layout/defaultLayout";
 
@@ -24,11 +25,13 @@ const ApiCall = () => {
               key={index}
               className="group rounded-xl overflow-hidden shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
             >
-              <img
-                className="w-full aspect-[3/4] object-cover"
-                src={item.images?.[0]}
-                alt={item.title}
-              />
+              <Link to={`/product/${item.id}`}>
+                <img
+                  className="w-full aspect-[3/4] object-cover"
+                  src={item.images?.[0]}
+                  alt={item.title}
+                />
+              </Link>
               <div className="p-4 space-y-2">
                 <h3 className="text-lg font-semibold text-gray-800 truncate">
                   {item.title}
