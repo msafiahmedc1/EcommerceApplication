@@ -3,15 +3,24 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useCart } from "../../core/contexts/CartContext";
 import DefaultLayout from "../../layout/defaultLayout";
+import CurrencyConverter from "../../currencyConverter";
 
 const ApiCall = () => {
-  const [productImages, setProductImages] = useState([]);
+  const [product, setProduct] = useState([]);
   const { addToCart } = useCart();
+
+  const [currency, setCurrency] = useState("PKR");
+  const [convertPrice, setConvertPrice] = useState(() => (p) => p);
+
+  const handleCurrencyChange = (currency, convertFn) => {
+    setCurrency(currency);
+    setConvertPrice(() => convertFn);
+  };
 
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get("https://api.escuelajs.co/api/v1/products");
-      setProductImages(res.data);
+      setProduct(res.data);
     };
     getData();
   }, []);
@@ -20,7 +29,7 @@ const ApiCall = () => {
     <DefaultLayout>
       <div className="py-12 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {productImages?.slice(0, 10).map((item, index) => (
+          {product?.slice(0, 10).map((item, index) => (
             <div
               key={index}
               className="group rounded-xl overflow-hidden shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
@@ -39,9 +48,12 @@ const ApiCall = () => {
                 <p className="text-sm text-gray-500 line-clamp-2">
                   {item.description}
                 </p>
-                <span className="text-green-600 font-bold text-md block">
-                  $ {item.price}
-                </span>
+                <div className="flex items-center justify-between">
+                  <span className="text-green-600 font-bold text-md">
+                    {convertPrice(item.price)}
+                  </span>
+                  <CurrencyConverter onChange={handleCurrencyChange} />
+                </div>
                 <button
                   onClick={() => addToCart(item)}
                   className="w-full mt-2 bg-green-600 text-white text-sm px-4 py-2 rounded-lg shadow-md hover:bg-green-700"
