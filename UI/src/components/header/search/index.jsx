@@ -5,7 +5,7 @@ const Search = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex items-center mr-2">
       <button
         onClick={() => setOpen(!open)}
         className="text-white text-xl focus:outline-none"
