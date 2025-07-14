@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import CurrencyConverter from "../currencyConverter";
 import { useCart } from "../../core/contexts/CartContext";
 import DefaultLayout from "../../layout/defaultLayout";
-import CurrencyConverter from "../../currencyConverter";
 
 const ApiCall = () => {
   const [product, setProduct] = useState([]);
