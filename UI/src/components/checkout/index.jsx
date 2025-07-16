@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../core/contexts/CartContext";
+import axios from "axios";
 
 const Checkout = () => {
   const {
@@ -13,11 +14,22 @@ const Checkout = () => {
   const { cartItems } = useCart();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("Form Data:", data);
     console.log("Cart Items:", cartItems);
-    alert("Order placed successfully!");
-    navigate("/");
+    // alert("Order placed successfully!");
+    // navigate("/");
+    try {
+      const res = await axios.post("http://localhost:8888/checkout", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("Response:", res.data);
+    } catch (error) {
+      console.error("Upload failed:", error.response?.data || error.message);
+    }
   };
 
   return (

@@ -1,14 +1,33 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import { NAVLINKS } from "./constants";
 import BrandName from "../brandName";
 import Search from "../search";
 import Cart from "../cart";
 import User from "../user";
+import { AuthContext } from "../../../core/contexts/Authorization";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation = () => {
+  const { logout } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const token = localStorage.getItem("authToken");
+  console.log("auth1", { token, isLoggedIn });
+  useEffect(() => {
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [token]);
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <nav className="bg-[#3e5f52] text-white px-6 py-4 shadow-md">
@@ -38,14 +57,38 @@ const Navigation = () => {
           ))}
         </ul>
         <div className="hidden md:flex space-x-6 text-xl">
-          <Search />
-          <Cart />
-          <User />
+          <div className="flex items-center gap-2">
+            <Search />
+            <Cart />
+          </div>
+          {isLoggedIn ? (
+            <button
+              style={{ cursor: "pointer" }}
+              onClick={handleLogout}
+              className="flex items-center gap-2"
+            >
+              <FontAwesomeIcon icon={faRightFromBracket} />
+            </button>
+          ) : (
+            <User />
+          )}
         </div>
         <div className="md:hidden flex items-center space-x-4">
-          <Search />
-          <Cart />
-          <User />
+          <div className="flex items-center gap-2">
+            <Search />
+            <Cart />
+          </div>
+          {isLoggedIn ? (
+            <button
+              style={{ cursor: "pointer" }}
+              onClick={handleLogout}
+              className="flex items-center gap-2"
+            >
+              <FontAwesomeIcon icon={faRightFromBracket} />
+            </button>
+          ) : (
+            <User />
+          )}
           <button
             className="text-white text-3xl focus:outline-none"
             onClick={() => setMenuOpen(!menuOpen)}
