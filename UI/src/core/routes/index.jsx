@@ -9,6 +9,8 @@ import Layout from "../../layout";
 import AddToCart from "../../components/addToCart";
 import Checkout from "../../components/checkout";
 import ProductDetails from "../../components/productDetails";
+import Login from "../../components/auth/login";
+import Register from "../../components/auth/register";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -25,6 +27,8 @@ const Routes = () => {
         { path: "addtocart", element: <AddToCart /> },
         { path: "checkout", element: <Checkout /> },
         { path: "/product/:id", element: <ProductDetails /> },
+        { path: "/login", element: <Login /> },
+        { path: "/register", element: <Register /> },
       ],
     },
   ]);

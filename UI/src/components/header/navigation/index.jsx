@@ -5,6 +5,7 @@ import { NAVLINKS } from "./constants";
 import BrandName from "../brandName";
 import Search from "../search";
 import Cart from "../cart";
+import User from "../user";
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -39,10 +40,12 @@ const Navigation = () => {
         <div className="hidden md:flex space-x-6 text-xl">
           <Search />
           <Cart />
+          <User />
         </div>
         <div className="md:hidden flex items-center space-x-4">
           <Search />
           <Cart />
+          <User />
           <button
             className="text-white text-3xl focus:outline-none"
             onClick={() => setMenuOpen(!menuOpen)}
