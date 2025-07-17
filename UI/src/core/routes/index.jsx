@@ -27,7 +27,6 @@ const Routes = () => {
         { path: "addtocart", element: <AddToCart /> },
         { path: "checkout", element: <Checkout /> },
         { path: "/product/:id", element: <ProductDetails /> },
-       
       ],
     },
     {

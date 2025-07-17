@@ -1,8 +1,8 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../core/contexts/CartContext";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useCart } from "../../core/contexts/CartContext";
 
 const Checkout = () => {
   const {
@@ -17,8 +17,7 @@ const Checkout = () => {
   const onSubmit = async (data) => {
     console.log("Form Data:", data);
     console.log("Cart Items:", cartItems);
-    // alert("Order placed successfully!");
-    // navigate("/");
+
     try {
       const res = await axios.post("http://localhost:8888/checkout", data, {
         headers: {
@@ -27,8 +26,23 @@ const Checkout = () => {
       });
 
       console.log("Response:", res.data);
+
+      Swal.fire({
+        title: "Order Placed!",
+        text: "Your order has been submitted successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+        navigate("/");
+      });
     } catch (error) {
       console.error("Upload failed:", error.response?.data || error.message);
+
+      Swal.fire({
+        title: "Error!",
+        text: "There was a problem placing your order.",
+        icon: "error",
+      });
     }
   };
 

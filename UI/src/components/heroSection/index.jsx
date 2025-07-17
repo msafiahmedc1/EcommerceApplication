@@ -1,4 +1,3 @@
-import React from "react";
 import Buttons from "./buttons";
 import sofaImage from "../../assets/heroSectionImages/sofa.png";
 

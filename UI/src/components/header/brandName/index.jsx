@@ -1,5 +1,3 @@
-import React from "react";
-
 const BrandName = () => {
   return (
     <div className="text-2xl font-bold">

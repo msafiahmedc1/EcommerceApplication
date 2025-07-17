@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { SIZES } from "./constants";
 import { useCart } from "../../core/contexts/CartContext";
-
-const sizes = ["XS", "S", "M", "L", "XL"];
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -52,7 +51,7 @@ const ProductDetails = () => {
         </div>
         <div>
           <div className="flex flex-wrap gap-2">
-            {sizes.map((size) => (
+            {SIZES.map((size) => (
               <button
                 key={size}
                 onClick={() => setSelectedSize(size)}

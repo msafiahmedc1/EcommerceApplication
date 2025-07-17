@@ -1,4 +1,3 @@
-import "./App.css";
 import Routes from "./core/routes";
 
 function App() {
