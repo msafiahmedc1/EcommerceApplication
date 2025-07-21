@@ -208,7 +208,7 @@ const HomeLayout = ({ categories, products }) => {
             </form>
             <div className="lg:col-span-3">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {products.map((item) => (
+                {products?.slice(0, 10).map((item) => (
                   <div key={item.id} className="border p-4 rounded-lg shadow">
                     <Link to={`/product/${item.id}`}>
                       <div className="h-40 bg-gray-100 mb-2 flex items-center justify-center overflow-hidden">
