@@ -1,15 +1,27 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
-import { useCart } from "../../core/contexts/CartContext";
 import DefaultLayout from "../../layout/defaultLayout";
+import { useCart } from "../../core/contexts/CartContext";
+import { AuthContext } from "../../core/contexts/Authentication";
 
 const AddToCart = () => {
   const { cartItems, incrementQty, decrementQty, removeItem } = useCart();
+  const { token } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.quantity * Number(item.price),
     0
   );
+
+  const handleCheckout = () => {
+    if (token) {
+      navigate("/checkout");
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <DefaultLayout>
@@ -69,12 +81,12 @@ const AddToCart = () => {
                 </h1>
               </div>
               <div className="mt-6 flex justify-end">
-                <Link
-                  to="/checkout"
+                <button
+                  onClick={handleCheckout}
                   className="px-6 py-3 bg-green-600 text-white font-medium text-lg rounded-lg shadow-md hover:bg-green-800 transition duration-300"
                 >
                   Checkout
-                </Link>
+                </button>
               </div>
             </>
           )}

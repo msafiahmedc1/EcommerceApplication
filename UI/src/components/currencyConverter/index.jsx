@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const CurrencyConverter = ({ onChange }) => {
-  const [currency, setCurrency] = useState("PKR");
+  const [currency, setCurrency] = useState("USD");
 
   const exchangeRates = {
     USD: 1,

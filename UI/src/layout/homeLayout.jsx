@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faXmark,
@@ -22,7 +23,7 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import fallbackImage from "../../assets/fallbackImages/download.png";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -213,9 +214,13 @@ const HomeLayout = ({ categories, products }) => {
                     <Link to={`/product/${item.id}`}>
                       <div className="h-40 bg-gray-100 mb-2 flex items-center justify-center overflow-hidden">
                         <img
-                          src={item.images?.[0]}
-                          alt={item.title}
-                          className="h-full object-contain"
+                          className="w-full aspect-[3/4] object-cover"
+                          src={item.images?.[0] || fallbackImage}
+                          alt={item.title || "No Image"}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = fallbackImage;
+                          }}
                         />
                       </div>
                     </Link>

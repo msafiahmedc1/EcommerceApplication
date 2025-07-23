@@ -84,7 +84,7 @@ const Login = () => {
             )}
           </div>
           <button type="submit" className="button">
-            Sign in
+            Log In
           </button>
           <div className="sign-up">
             Doesn't have an account? <Link to="/register">Signup</Link>

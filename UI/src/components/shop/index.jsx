@@ -5,12 +5,13 @@ import CurrencyConverter from "../currencyConverter";
 import { useCart } from "../../core/contexts/CartContext";
 import DefaultLayout from "../../layout/defaultLayout";
 import API from "../../apis";
+import fallbackImage from "../../assets/fallbackImages/download.png";
 
 const Shop = () => {
   const [product, setProduct] = useState([]);
   const { addToCart } = useCart();
 
-  const [currency, setCurrency] = useState("PKR");
+  const [currency, setCurrency] = useState("USD");
   const [convertPrice, setConvertPrice] = useState(() => (p) => p);
 
   const handleCurrencyChange = (currency, convertFn) => {
@@ -42,8 +43,12 @@ const Shop = () => {
                   <Link to={`/product/${item.id}`}>
                     <img
                       className="w-full aspect-[3/4] object-cover"
-                      src={item.images?.[0]}
-                      alt={item.title}
+                      src={item.images?.[0] || fallbackImage}
+                      alt={item.title || "No Image"}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = fallbackImage;
+                      }}
                     />
                   </Link>
                   <div className="p-4 space-y-2">
