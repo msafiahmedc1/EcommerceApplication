@@ -23,7 +23,7 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import fallbackImage from "../../assets/fallbackImages/download.png";
+import fallbackImage from "../../src/assets/fallbackImages/download.png";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
