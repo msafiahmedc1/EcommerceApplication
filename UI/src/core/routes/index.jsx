@@ -11,6 +11,10 @@ import Checkout from "../../components/checkout";
 import ProductDetails from "../../components/productDetails";
 import Login from "../../components/auth/login";
 import Register from "../../components/auth/register";
+import AdminLayout from "../../layout/adminLayout";
+import StatsCard from "../../components/adminDashboard/statsCard";
+import PaymentSummary from "../../components/adminDashboard/paymentSummary";
+import OrdersManagement from "../../components/adminDashboard/orderManagement";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -36,6 +40,15 @@ const Routes = () => {
     {
       path: "register",
       element: <Register />,
+    },
+    {
+      path: "admin",
+      element: <AdminLayout />,
+      children: [
+        { path: "statistics", element: <StatsCard /> },
+        { path: "payments", element: <PaymentSummary /> },
+        { path: "orders", element: <OrdersManagement /> },
+      ],
     },
   ]);
   return (
