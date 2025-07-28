@@ -15,6 +15,7 @@ import AdminLayout from "../../layout/adminLayout";
 import StatsCard from "../../components/adminDashboard/statsCard";
 import PaymentSummary from "../../components/adminDashboard/paymentSummary";
 import OrdersManagement from "../../components/adminDashboard/orderManagement";
+import AddProduct from "../../components/adminDashboard/addProduct";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -45,6 +46,7 @@ const Routes = () => {
       path: "admin",
       element: <AdminLayout />,
       children: [
+        { path: "addproduct", element: <AddProduct /> },
         { path: "statistics", element: <StatsCard /> },
         { path: "payments", element: <PaymentSummary /> },
         { path: "orders", element: <OrdersManagement /> },
