@@ -11,11 +11,12 @@ import Checkout from "../../components/checkout";
 import ProductDetails from "../../components/productDetails";
 import Login from "../../components/auth/login";
 import Register from "../../components/auth/register";
-import AdminLayout from "../../layout/adminLayout";
 import StatsCard from "../../components/adminDashboard/statsCard";
 import PaymentSummary from "../../components/adminDashboard/paymentSummary";
 import OrdersManagement from "../../components/adminDashboard/orderManagement";
-import AddProduct from "../../components/adminDashboard/addProduct";
+import ManageProducts from "../../components/adminDashboard/product";
+import AddProduct from "../../components/adminDashboard/product/addProduct";
+import DashboardLayout from "../../layout/dashboardLayout";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -44,13 +45,18 @@ const Routes = () => {
     },
     {
       path: "admin",
-      element: <AdminLayout />,
+      element: <DashboardLayout role="admin" />,
       children: [
+        { path: "index", element: <ManageProducts /> },
         { path: "addproduct", element: <AddProduct /> },
         { path: "statistics", element: <StatsCard /> },
         { path: "payments", element: <PaymentSummary /> },
         { path: "orders", element: <OrdersManagement /> },
       ],
+    },
+    {
+      path: "user",
+      element: <DashboardLayout />,
     },
   ]);
   return (
