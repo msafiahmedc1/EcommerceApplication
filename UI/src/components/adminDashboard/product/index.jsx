@@ -1,15 +1,25 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const ManageProducts = () => {
   const { products } = useOutletContext();
+  const [imageURLs, setImageURLs] = useState([]);
+
+  useEffect(() => {
+    const urls = products.map((product) =>
+      product.picture instanceof File
+        ? URL.createObjectURL(product.picture)
+        : null
+    );
+    setImageURLs(urls);
+
+    return () => {
+      urls.forEach((url) => url && URL.revokeObjectURL(url));
+    };
+  }, [products]);
 
   return (
     <div className="pt-15 px-4">
-      <Link to="/admin/addproduct">
-        <button className="bg-[#3e5f52] text-white px-4 py-2 rounded-lg mb-4">
-          Add Product
-        </button>
-      </Link>
       <table className="w-full border-collapse border border-gray-300">
         <thead className="bg-gray-100">
           <tr>
@@ -27,9 +37,9 @@ const ManageProducts = () => {
               <td className="border px-4 py-2">{product.salePrice}</td>
               <td className="border px-4 py-2">{product.purchasePrice}</td>
               <td className="border px-4 py-2">
-                {product.picture ? (
+                {imageURLs[idx] ? (
                   <img
-                    src={URL.createObjectURL(product.picture)}
+                    src={imageURLs[idx]}
                     alt="product"
                     className="h-12 object-contain"
                   />
