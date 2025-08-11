@@ -17,6 +17,8 @@ import OrdersManagement from "../../components/adminDashboard/orderManagement";
 import ManageProducts from "../../components/adminDashboard/product";
 import AddProduct from "../../components/adminDashboard/product/addProduct";
 import DashboardLayout from "../../layout/dashboardLayout";
+import Profile from "../../components/userDashboard/profile";
+import OrderHistory from "../../components/userDashboard/orderHistory";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -57,6 +59,10 @@ const Routes = () => {
     {
       path: "user",
       element: <DashboardLayout />,
+      children: [
+        { path: "profile", element: <Profile /> },
+        { path: "order-history", element: <OrderHistory /> },
+      ],
     },
   ]);
   return (

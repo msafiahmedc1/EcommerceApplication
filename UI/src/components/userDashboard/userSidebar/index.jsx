@@ -9,7 +9,7 @@ const UserSidebar = () => {
       <Sidebar
         title="User Panel"
         items={SIDEBARITEMS}
-        footerText="© 2025 E-Shop Admin"
+        footerText="© 2025 E-Shop User"
       />
     </div>
   );
