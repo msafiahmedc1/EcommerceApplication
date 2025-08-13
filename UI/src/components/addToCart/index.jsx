@@ -29,7 +29,7 @@ const AddToCart = () => {
         <h2 className="text-center text-2xl font-bold mb-4">Your Cart</h2>
         <div className="mt-6">
           {cartItems.length === 0 ? (
-            <p>Your cart is empty.</p>
+            <p className="text-center">Your cart is empty.</p>
           ) : (
             <>
               <ul className="space-y-4 mt-6">

@@ -176,11 +176,6 @@ const OrderHistory = () => {
               </div>
             </div>
           </div>
-          <div className="mt-6 text-center">
-            <button className="bg-[#4f7666] hover:bg-[#476c5d] text-white px-6 py-2 rounded-lg transition-colors">
-              Load More Orders
-            </button>
-          </div>
         </div>
       </div>
     </div>

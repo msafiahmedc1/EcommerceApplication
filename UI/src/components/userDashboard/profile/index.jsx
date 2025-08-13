@@ -17,10 +17,6 @@ const Profile = () => {
                     Member since July 2025
                   </p>
                 </div>
-                <button className="flex items-center gap-2 bg-[#2d4a3f] hover:bg-[#263d35] px-4 py-2 rounded-lg transition-colors">
-                  <Edit className="w-4 h-4" />
-                  Edit Profile
-                </button>
               </div>
             </div>
           </div>
